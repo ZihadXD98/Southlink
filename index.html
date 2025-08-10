@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SouthLink FTP Servers</title>
+  
+  <!-- Font Awesome Favicon (using SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%234f46e5' d='M480 160H32c-17.673 0-32-14.327-32-32V64c0-17.673 14.327-32 32-32h448c17.673 0 32 14.327 32 32v64c0 17.673-14.327 32-32 32zm-48-88c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zM32 288h448c17.673 0 32-14.327 32-32v-64c0-17.673-14.327-32-32-32H32c-17.673 0-32 14.327-32 32v64c0 17.673 14.327 32 32 32zm48-120c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm64 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm400 120H32c-17.673 0-32-14.327-32-32v64c0 17.673 14.327 32 32 32h448c17.673 0 32-14.327 32-32v-64c0-17.673-14.327-32-32-32zm-48 88c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-64 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z'/></svg>" type="image/svg+xml">
+  
+  <!-- Fallback for older browsers -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --accent: #4f46e5;
+      --text: #1e293b;
+      --text-secondary: #64748b;
+      --hover: #f1f5f9;
+      --highlight: #f59e0b;
+      --success: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .section {
+      background-color: var(--card);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .section h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section h2 i {
+      color: var(--highlight);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-color: var(--accent);
+      background: var(--hover);
+    }
+
+    .card i {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .card:hover i {
+      color: var(--highlight);
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-left: auto;
+      background-color: var(--success);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Animation only when user prefers reduced motion is off */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+      
+      .card {
+        transition: all 0.2s ease;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        font-size: 1.5rem;
+        padding: 1.5rem 1rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section {
+        padding: 1.25rem;
+      }
+      
+      .section h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    SouthLink FTP Servers
+    <small>Devolver - Asif Rahaman Zihad</small>
+  </header>
+
+  <div class="container">
+
+    <!-- TV Servers -->
+    <div class="section fade-in">
+      <h2><i class="fas fa-tv"></i> Available Servers</h2>
+      <div class="card-grid">
+        <a href="http://10.200.13.14" target="_blank" class="card fade-in delay-1">
+          <i class="fa-solid fa-tv"></i>
+          SouthLink TV
+          <span class="status-dot"></span>
+        </a>
+
+
+        <a href="http://100.100.100.100/southlink.apk" target="_blank" class="card fade-in delay-2">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          SouthLink App
+          <span class="status-dot"></span>
+        </a>
+
+
+        <a href="http://www.speedtest.com.sg/" target="_blank" class="card fade-in delay-2">
+          <i class="fa-solid fa-gauge-high"></i>
+          Chack Internet Speed
+          <span class="status-dot"></span>
+        </a>
+
+
+        <a href="https://rajnet.ispdigital.cloud/BillPayment/Index/" target="_blank" class="card fade-in delay-2">
+          <i class="fa-solid fa-credit-card"></i>
+          Pay Bill Online
+          <span class="status-dot"></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FTP Links -->
+    <div class="section fade-in delay-1">
+      <h2><i class="fas fa-network-wired"></i> Available FTP Links</h2>
+      <div class="card-grid">
+        <a href="http://new.circleftp.net" target="_blank" class="card fade-in delay-1">
+          <i class="fas fa-server"></i>
+          New Circle FTP
+          <span class="status-dot"></span>
+        </a>
+
+        <a href="http://circleftp.net" target="_blank" class="card fade-in delay-2">
+          <i class="fa-solid fa-server"></i>
+          Circle FTP
+          <span class="status-dot"></span>
+        </a>
+
+        <a href="https://www.elaach.com" target="_blank" class="card fade-in delay-3">
+          <i class="fa-solid fa-server"></i>
+          Elaach FTP
+          <span class="status-dot"></span>
+        </a>
+
+        <a href="http://172.16.50.9" target="_blank" class="card fade-in delay-1">
+          <i class="fa-solid fa-server"></i>
+          SAM ONLINE
+          <span class="status-dot"></span>
+        </a>
+
+        <a href="http://10.16.100.244" target="_blank" class="card fade-in delay-2">
+          <i class="fa-solid fa-server"></i>
+          ICC FTP
+          <span class="status-dot"></span>
+        </a>
+
+        <a href="http://10.55.55.4/" target="_blank" class="card fade-in delay-3">
+          <i class="fa-solid fa-server"></i>
+          i2FLIX
+          <span class="status-dot"></span>
+        </a>
+
+        <a href="https://ftpbd.net/" target="_blank" class="card fade-in delay-3">
+          <i class="fa-solid fa-server"></i>
+          FTP BD
+          <span class="status-dot"></span>
+        </a>
+		
+		
+        <a href="http://www.beeflix.biz/" target="_blank" class="card fade-in delay-3">
+          <i class="fa-solid fa-server"></i>
+          Bee Flix
+          <span class="status-dot"></span>
+        </a>
+		
+		
+        <a href="http://binodonmela.net/" target="_blank" class="card fade-in delay-3">
+          <i class="fa-solid fa-server"></i>
+          Binodonmela
+          <span class="status-dot"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer fade-in delay-2">
+      <p>© 2020 SouthLink FTP Servers | All rights reserved</p>
+      <p>Last updated: <span id="last-updated"></span></p>
+    </div>
+
+  </div>
+
+  <script>
+    // Simple last updated date
+    document.getElementById('last-updated').textContent = new Date().toLocaleDateString();
+    
+    // Only add scroll animations if user doesn't prefer reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.section, .card, .footer').forEach(el => {
+        observer.observe(el);
+      });
+    } else {
+      // Immediately show all content if reduced motion is preferred
+      document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
