@@ -26,6 +26,7 @@
       --hover: #f1f5f9;
       --highlight: #f59e0b;
       --success: #10b981;
+      --error: #ef4444;
     }
 
     * {
@@ -106,6 +107,7 @@
       align-items: center;
       gap: 0.75rem;
       border: 1px solid #e2e8f0;
+      position: relative;
     }
 
     .card:hover {
@@ -126,11 +128,28 @@
 
     .status-dot {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       margin-left: auto;
+    }
+
+    .status-online {
       background-color: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    .status-offline {
+      background-color: var(--error);
+      box-shadow: 0 0 8px var(--error);
+    }
+
+    .status-text {
+      font-size: 0.7rem;
+      position: absolute;
+      right: 1rem;
+      top: 0.2rem;
+      color: var(--text-secondary);
     }
 
     .footer {
@@ -197,31 +216,39 @@
     <div class="section fade-in">
       <h2><i class="fas fa-tv"></i> Available Servers</h2>
       <div class="card-grid">
-        <a href="http://10.200.13.14" target="_blank" class="card fade-in delay-1">
+        <a href="http://10.200.13.14" target="_blank" class="card fade-in delay-1" data-url="http://10.200.13.14">
           <i class="fa-solid fa-tv"></i>
           SouthLink TV
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
+        <a href="http://100.100.100.100/southlink.apk" target="_blank" class="card fade-in delay-2" data-url="http://100.100.100.100/southlink.apk">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          SouthLink App
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
+        </a>
 
-        <a href="http://www.speedtest.com.sg/" target="_blank" class="card fade-in delay-2">
+        <a href="http://www.speedtest.com.sg/" target="_blank" class="card fade-in delay-2" data-url="http://www.speedtest.com.sg/">
           <i class="fa-solid fa-gauge-high"></i>
-          Singapore Speed Test
-          <span class="status-dot"></span>
+          Check Internet Speed
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-
-        <a href="http://www.fast.com/" target="_blank" class="card fade-in delay-2">
+        <a href="http://www.fast.com/" target="_blank" class="card fade-in delay-2" data-url="http://www.fast.com/">
           <i class="fa-solid fa-gauge-high"></i>
           Fast.com
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-
-        <a href="https://rajnet.ispdigital.cloud/BillPayment/Index/" target="_blank" class="card fade-in delay-2">
+        <a href="https://rajnet.ispdigital.cloud/BillPayment/Index/" target="_blank" class="card fade-in delay-2" data-url="https://rajnet.ispdigital.cloud/BillPayment/Index/">
           <i class="fa-solid fa-credit-card"></i>
           Pay Bill Online
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
       </div>
     </div>
@@ -230,60 +257,67 @@
     <div class="section fade-in delay-1">
       <h2><i class="fas fa-network-wired"></i> Available FTP Links</h2>
       <div class="card-grid">
-        <a href="http://new.circleftp.net" target="_blank" class="card fade-in delay-1">
+        <a href="http://new.circleftp.net" target="_blank" class="card fade-in delay-1" data-url="http://new.circleftp.net">
           <i class="fas fa-server"></i>
           New Circle FTP
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-        <a href="http://circleftp.net" target="_blank" class="card fade-in delay-2">
+        <a href="http://circleftp.net" target="_blank" class="card fade-in delay-2" data-url="http://circleftp.net">
           <i class="fa-solid fa-server"></i>
           Circle FTP
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-        <a href="https://www.elaach.com" target="_blank" class="card fade-in delay-3">
+        <a href="https://www.elaach.com" target="_blank" class="card fade-in delay-3" data-url="https://www.elaach.com">
           <i class="fa-solid fa-server"></i>
           Elaach FTP
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-        <a href="http://172.16.50.9" target="_blank" class="card fade-in delay-1">
+        <a href="http://172.16.50.9" target="_blank" class="card fade-in delay-1" data-url="http://172.16.50.9">
           <i class="fa-solid fa-server"></i>
           SAM ONLINE
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-        <a href="http://10.16.100.244" target="_blank" class="card fade-in delay-2">
+        <a href="http://10.16.100.244" target="_blank" class="card fade-in delay-2" data-url="http://10.16.100.244">
           <i class="fa-solid fa-server"></i>
           ICC FTP
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-        <a href="http://10.55.55.4/" target="_blank" class="card fade-in delay-3">
+        <a href="http://10.55.55.4/" target="_blank" class="card fade-in delay-3" data-url="http://10.55.55.4/">
           <i class="fa-solid fa-server"></i>
           i2FLIX
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
 
-        <a href="https://ftpbd.net/" target="_blank" class="card fade-in delay-3">
+        <a href="https://ftpbd.net/" target="_blank" class="card fade-in delay-3" data-url="https://ftpbd.net/">
           <i class="fa-solid fa-server"></i>
           FTP BD
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
-		
-		
-        <a href="http://www.beeflix.biz/" target="_blank" class="card fade-in delay-3">
+        
+        <a href="http://www.beeflix.biz/" target="_blank" class="card fade-in delay-3" data-url="http://www.beeflix.biz/">
           <i class="fa-solid fa-server"></i>
           Bee Flix
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
-		
-		
-        <a href="http://binodonmela.net/" target="_blank" class="card fade-in delay-3">
+        
+        <a href="http://binodonmela.net/" target="_blank" class="card fade-in delay-3" data-url="http://binodonmela.net/">
           <i class="fa-solid fa-server"></i>
           Binodonmela
-          <span class="status-dot"></span>
+          <span class="status-text">Offline</span>
+          <span class="status-dot status-offline"></span>
         </a>
       </div>
     </div>
@@ -319,9 +353,77 @@
         el.style.transform = 'none';
       });
     }
+
+    // Function to check server status (including local network)
+    async function checkServerStatus(url, element) {
+      const statusDot = element.querySelector('.status-dot');
+      const statusText = element.querySelector('.status-text');
+      
+      try {
+        // Create a timestamped URL to avoid caching
+        const timestamp = new Date().getTime();
+        const testUrl = new URL(url);
+        testUrl.searchParams.set('_', timestamp);
+        
+        // Try to fetch a favicon or small resource
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        
+        const response = await fetch(testUrl, {
+          method: 'HEAD',
+          mode: 'no-cors',
+          signal: controller.signal,
+          cache: 'no-store'
+        });
+        
+        clearTimeout(timeoutId);
+        
+        // If we get here, the request succeeded
+        statusDot.classList.remove('status-offline');
+        statusDot.classList.add('status-online');
+        statusText.textContent = 'Online';
+      } catch (error) {
+        // Try with an image request if HEAD fails
+        try {
+          const img = new Image();
+          img.onload = function() {
+            statusDot.classList.remove('status-offline');
+            statusDot.classList.add('status-online');
+            statusText.textContent = 'Online';
+          };
+          img.onerror = function() {
+            statusDot.classList.remove('status-online');
+            statusDot.classList.add('status-offline');
+            statusText.textContent = 'Offline';
+          };
+          img.src = url + '/favicon.ico?_=' + new Date().getTime();
+        } catch (e) {
+          statusDot.classList.remove('status-online');
+          statusDot.classList.add('status-offline');
+          statusText.textContent = 'Offline';
+        }
+      }
+    }
+
+    // Check status for all cards when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card[data-url]');
+      
+      // Initial check
+      cards.forEach(card => {
+        const url = card.getAttribute('data-url');
+        checkServerStatus(url, card);
+      });
+      
+      // Check status every 2 seconds
+      setInterval(() => {
+        cards.forEach(card => {
+          const url = card.getAttribute('data-url');
+          checkServerStatus(url, card);
+        });
+      }, 10000); // 10 seconds
+    });
   </script>
 
 </body>
 </html>
-
-
