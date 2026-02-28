@@ -109,7 +109,6 @@
       margin-top:2rem;
     }
 
-    /* Toast */
     .toast {
       position:fixed;
       bottom:20px;
@@ -137,7 +136,7 @@
 
 <header>
   SouthLink FTP Servers
-  <small>Notice ⛔বিকাশ সার্ভার সমস্যার কারণে আমাদের অনলাইন পেমেন্ট বন্ধ আছে অনুগ্রহ করে বিকাশ পার্সোনাল নাম্বার এর মাধ্যমে বিল পরিশোধ করুন⛔</small>
+  <small>Notice ⛔ বিকাশ সার্ভার সমস্যার কারণে আমাদের অনলাইন পেমেন্ট বন্ধ আছে অনুগ্রহ করে বিকাশ পার্সোনাল নাম্বার এর মাধ্যমে বিল পরিশোধ করুন ⛔</small>
 </header>
 
 <div class="container">
@@ -147,26 +146,25 @@
     <h2><i class="fas fa-link"></i> Quick Links</h2>
     <div class="card-grid">
 
-      <!-- BKASH AUTO COPY (HTTP SAFE) -->
       <div class="card" onclick="copyBkash('01959191703')">
         <i class="fa-solid fa-credit-card"></i>
         Bkash Personal 01959191703
         <span class="status-dot"></span>
       </div>
 
-      <a href="http://www.speedtest.com.sg/" target="_blank" class="card">
+      <a href="https://www.speedtest.com.sg/" target="_blank" rel="noopener" class="card">
         <i class="fa-solid fa-gauge-high"></i>
         Check Internet Speed
         <span class="status-dot"></span>
       </a>
 
-      <a href="https://proof.ovh.net/" target="_blank" class="card">
+      <a href="https://proof.ovh.net/" target="_blank" rel="noopener" class="card">
         <i class="fa-solid fa-gauge-high"></i>
         OVH SpeedTest
         <span class="status-dot"></span>
       </a>
 
-      <a href="https://www.fast.com/" target="_blank" class="card">
+      <a href="https://www.fast.com/" target="_blank" rel="noopener" class="card">
         <i class="fa-solid fa-gauge-high"></i>
         Fast.com
         <span class="status-dot"></span>
@@ -179,14 +177,16 @@
   <div class="section">
     <h2><i class="fas fa-tv"></i> TV Server</h2>
     <div class="card-grid">
-      <a href="http://10.200.13.14" target="_blank" class="card">
+
+      <a href="http://10.200.13.14" target="_blank" rel="noopener" class="card">
         <i class="fa-solid fa-tv"></i>
         SouthLink TV
         <span class="status-dot"></span>
       </a>
 
-      <a href="youtube.com" target="_blank" class="card">
-        <i class="fa-solid fa-tv"></i>
+      <!-- FIXED YOUTUBE LINK -->
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="card">
+        <i class="fa-brands fa-youtube"></i>
         YouTube
         <span class="status-dot"></span>
       </a>
@@ -198,11 +198,11 @@
   <div class="section">
     <h2><i class="fas fa-network-wired"></i> Available FTP Links</h2>
     <div class="card-grid">
-      <a href="http://new.circleftp.net" target="_blank" class="card"><i class="fas fa-server"></i> New Circle FTP</a>
-      <a href="http://circleftp.net" target="_blank" class="card"><i class="fas fa-server"></i> Circle FTP</a>
-      <a href="https://www.elaach.com" target="_blank" class="card"><i class="fas fa-server"></i> Elaach FTP</a>
-      <a href="http://172.16.50.9" target="_blank" class="card"><i class="fas fa-server"></i> SAM ONLINE</a>
-      <a href="http://10.16.100.244" target="_blank" class="card"><i class="fas fa-server"></i> ICC FTP</a>
+      <a href="http://new.circleftp.net" target="_blank" rel="noopener" class="card"><i class="fas fa-server"></i> New Circle FTP</a>
+      <a href="http://circleftp.net" target="_blank" rel="noopener" class="card"><i class="fas fa-server"></i> Circle FTP</a>
+      <a href="https://www.elaach.com" target="_blank" rel="noopener" class="card"><i class="fas fa-server"></i> Elaach FTP</a>
+      <a href="http://172.16.50.9" target="_blank" rel="noopener" class="card"><i class="fas fa-server"></i> SAM ONLINE</a>
+      <a href="http://10.16.100.244" target="_blank" rel="noopener" class="card"><i class="fas fa-server"></i> ICC FTP</a>
     </div>
   </div>
 
@@ -218,15 +218,11 @@
     new Date().toLocaleDateString();
 
   function copyBkash(number) {
-
-    // Modern Clipboard (HTTPS / localhost)
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(number)
         .then(() => showToast("Bkash number copied: " + number))
         .catch(() => fallbackCopy(number));
-    } 
-    // Fallback (HTTP / IP / LAN)
-    else {
+    } else {
       fallbackCopy(number);
     }
   }
@@ -236,16 +232,9 @@
     input.value = text;
     document.body.appendChild(input);
     input.select();
-    input.setSelectionRange(0, 99999);
-
-    try {
-      document.execCommand("copy");
-      showToast("Bkash number copied: " + text);
-    } catch (e) {
-      alert("Copy failed. Please copy manually: " + text);
-    }
-
+    document.execCommand("copy");
     document.body.removeChild(input);
+    showToast("Bkash number copied: " + text);
   }
 
   function showToast(msg) {
